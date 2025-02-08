@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BDG WIN</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 350px;
+        }
+        .header {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffc107;
+            margin-bottom: 20px;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .button-group button {
+            flex: 1;
+            padding: 10px;
+            margin: 0 5px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #fff;
+            background-color: #6c757d;
+        }
+        .button-group button.active {
+            background-color: #ffc107;
+            color: #000;
+        }
+        .result-box {
+            margin: 20px 0;
+            font-size: 18px;
+            color: #000;
+        }
+        .result {
+            font-weight: bold;
+        }
+        .start-button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        .start-button:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #6c757d;
+        }
+        .period-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .selected {
+            background-color: #ffc107 !important;
+            color: #000 !important;
+            font-weight: bold;
+        }
+        .credit {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">BDG WIN</div>
+        <div class="button-group">
+            <button id="btn-30s" onclick="selectGame('30s', this)">Win Go 30s</button>
+            <button id="btn-1min" class="active" onclick="selectGame('1min', this)">Win Go 1Min</button>
+            <button id="btn-3min" onclick="selectGame('3min', this)">Win Go 3Min</button>
+            <button id="btn-5min" onclick="selectGame('5min', this)">Win Go 5Min</button>
+        </div>
+        <div class="result-box">
+            <input type="text" id="period" class="period-input" placeholder="ENTER PERIOD NUMBER">
+            <button class="start-button" onclick="startGame()">𝗦𝗧𝗔𝗥𝗧</button>
+            <div>RESULT: <span class="result" id="result">--</span></div>
+        </div>
+        <div class="footer">𝗛𝗔𝗖𝗞 𝗥𝗘𝗖𝗢𝗥𝗗𝗦</div>
+        <div class="credit">𝗙𝗨𝗟𝗟 𝗖𝗥𝗘𝗔𝗗𝗜𝗧 𝗕𝗬 :- 𝗠𝗢𝗗𝗫 𝗛𝗔𝗖𝗞𝗘𝗥</div>
+    </div>
+
+    <script>
+        function selectGame(game, button) {
+            // Remove the 'selected' class from all buttons
+            const buttons = document.querySelectorAll('.button-group button');
+            buttons.forEach(btn => btn.classList.remove('selected'));
+
+            // Add the 'selected' class to the clicked button
+            button.classList.add('selected');
+
+            alert("Selected: " + game);
+        }
+
+        function startGame() {
+            const periodInput = document.getElementById("period").value;
+            if (!periodInput) {
+                alert("Please enter a period number!");
+                return;
+            }
+
+            const randomNum = Math.floor(Math.random() * 10); // Generate a random number between 0 and 9
+            const resultText = randomNum >= 5 ? "BIG" : "SMALL"; // Determine if BIG or SMALL
+            document.getElementById("result").textContent = `${randomNum} (${resultText})`;
+        }
+    </script>
+</body>
+</html>
